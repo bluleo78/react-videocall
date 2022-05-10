@@ -8,8 +8,8 @@ const users = require('./users');
 function initSocket(socket) {
   let id;
   socket
-    .on('init', async () => {
-      id = await users.create(socket);
+    .on('init', async ({ userId }) => {
+      id = await users.create(socket, userId);
       if (id) {
         socket.emit('init', { id });
       } else {
